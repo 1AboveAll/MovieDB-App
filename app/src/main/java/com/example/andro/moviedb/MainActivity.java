@@ -55,14 +55,6 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout=(TabLayout)findViewById(R.id.tab_layout);
         mTabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
     }
 
@@ -151,9 +143,9 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Movies";
                 case 1:
-                    return "SECTION 2";
+                    return "TV Shows";
                 case 2:
                     return "SECTION 3";
             }
