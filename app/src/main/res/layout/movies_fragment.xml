@@ -15,7 +15,7 @@
         android:layout_margin="10dp"
         android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="250dp">
 
         <TextView
             android:id="@+id/nowShowingTextView"
@@ -43,7 +43,7 @@
             android:background="@color/colorPrimaryDark"
             android:layout_width="match_parent"
 
-            android:layout_height="300dp">
+            android:layout_height="250dp">
 
             <TextView
                 android:id="@+id/comingSoonTextView"
@@ -57,7 +57,7 @@
                 android:textColor="@color/textColor" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/upComing"
+                android:id="@+id/comingSoon"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="5dp"
@@ -68,7 +68,7 @@
         android:layout_margin="10dp"
         android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="275dp">
 
         <TextView
             android:id="@+id/popularMoviesTextView"
@@ -94,7 +94,7 @@
             android:layout_margin="10dp"
             android:background="@color/colorPrimaryDark"
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="275dp">
 
             <TextView
                 android:id="@+id/genreTextView"
