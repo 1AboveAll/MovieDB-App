@@ -17,6 +17,10 @@ public interface MoviesInterface {
     @GET("upcoming?api_key="+MovieDBConstants.API_KEY+"&language=en-US&region=US")
     Call<MovieResponse>getUpcoming();
 
+    @GET("popular?api_key="+MovieDBConstants.API_KEY+"&language=en-US&page=1&region=US")
+    Call<MovieResponse>getPopular();
+
+
 
 
 }

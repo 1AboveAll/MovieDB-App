@@ -25,6 +25,7 @@
             android:layout_margin="5dp"
             android:gravity="bottom"
             android:text="Now Showing"
+            android:textStyle="bold"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
             android:textColor="@color/textColor" />
 
@@ -54,6 +55,7 @@
                 android:layout_margin="5dp"
                 android:gravity="bottom"
                 android:text="Coming Soon"
+                android:textStyle="bold"
                 android:textColor="@color/textColor" />
 
             <android.support.v7.widget.RecyclerView
@@ -77,6 +79,7 @@
             android:layout_weight="1"
             android:layout_margin="5dp"
             android:gravity="bottom"
+            android:textStyle="bold"
             android:text="Most Popular Movies"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
             android:textColor="@color/textColor" />
@@ -104,6 +107,7 @@
                 android:layout_margin="5dp"
                 android:gravity="bottom"
                 android:text="Genre"
+                android:textStyle="bold"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:textColor="@color/textColor" />
 

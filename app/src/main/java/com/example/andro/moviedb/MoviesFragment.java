@@ -32,7 +32,9 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
     RecyclerView comingSoon;
     MoviesAdapter comingSoonAdapter;
 
-
+    List<MovieResults> popularMoviesResultsList;
+    RecyclerView popularMovies;
+    MoviesAdapter popularMoviesAdapter;
 
 
 
@@ -50,7 +52,7 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
             }
         });
         nowShowing.setAdapter(nowShowingAdapter);
-        nowShowing.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,true));
+        nowShowing.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
         comingSoon=v.findViewById(R.id.comingSoon);
         comingSoonResultsList=new ArrayList<>();
@@ -61,7 +63,20 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
             }
         });
         comingSoon.setAdapter(comingSoonAdapter);
-        comingSoon.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,true));
+        comingSoon.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+
+
+        popularMovies=v.findViewById(R.id.popularMovies);
+        popularMoviesResultsList=new ArrayList<>();
+        popularMoviesAdapter =new MoviesAdapter(getContext(), popularMoviesResultsList, new MoviesAdapter.MoviesClickListener() {
+            @Override
+            public void onMovieClick(View view, int position) {
+
+            }
+        });
+        popularMovies.setAdapter(popularMoviesAdapter);
+        popularMovies.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+
 
 
                 Retrofit retrofit = MoviesClient.getMoviesClient();
@@ -73,6 +88,7 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
                 MovieResponse movieResponse=response.body();
                 List<MovieResults>movieResults=movieResponse.results;
                 nowShowingResultsList.addAll(movieResults);
+
                 nowShowingAdapter.notifyDataSetChanged();
 
             }
@@ -91,6 +107,22 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
                 List<MovieResults>movieResults=movieResponse.results;
                 comingSoonResultsList.addAll(movieResults);
                 comingSoonAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<MovieResponse> call, Throwable t) {
+
+            }
+        });
+
+        Call<MovieResponse> getPopular=moviesInterface.getPopular();
+        getPopular.enqueue(new Callback<MovieResponse>() {
+            @Override
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                MovieResponse movieResponse=response.body();
+                List<MovieResults>movieResults=movieResponse.results;
+                popularMoviesResultsList.addAll(movieResults);
+                popularMoviesAdapter.notifyDataSetChanged();
             }
 
             @Override
