@@ -18,7 +18,7 @@ public class MovieResponse {
 }
 
 
- class MovieResults{
+  class MovieResults{
 
      private int id;
      private float vote;

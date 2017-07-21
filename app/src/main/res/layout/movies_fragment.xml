@@ -15,7 +15,7 @@
         android:layout_margin="10dp"
         android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="275dp">
 
         <TextView
             android:id="@+id/nowShowingTextView"
@@ -60,6 +60,32 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/comingSoon"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="5"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="275dp">
+
+            <TextView
+                android:id="@+id/topRatedTextView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:gravity="bottom"
+                android:text="Top Rated"
+                android:textStyle="bold"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/textColor" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/topRated"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="5dp"
