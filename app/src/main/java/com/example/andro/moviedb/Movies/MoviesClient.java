@@ -1,4 +1,4 @@
-package com.example.andro.moviedb;
+package com.example.andro.moviedb.Movies;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MoviesClient {
 
-    public static final String BASE_URL="https://api.themoviedb.org/3/";
+    public static final String BASE_URL="https://api.themoviedb.org/3/movie/";
     public static Retrofit retrofit = null;
 
     public static Retrofit getMoviesClient(){

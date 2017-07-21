@@ -1,7 +1,5 @@
 package com.example.andro.moviedb;
 
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+
+import com.example.andro.moviedb.Movies.MoviesFragment;
+import com.example.andro.moviedb.TvShows.TvShowsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -135,7 +136,9 @@ public class MainActivity extends AppCompatActivity {
                 return moviesFragment;
             }
             if(position==1){
-                return PlaceholderFragment.newInstance(position + 1);
+                TvShowsFragment tvShowsFragment=new TvShowsFragment();
+
+                return tvShowsFragment;
             }
             if(position==2){
                 return PlaceholderFragment.newInstance(position + 1);
@@ -159,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     return "TV Shows";
                 case 2:
-                    return "SECTION 3";
+                    return "People";
             }
             return null;
         }

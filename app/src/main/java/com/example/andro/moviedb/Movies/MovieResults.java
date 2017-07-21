@@ -1,31 +1,17 @@
-package com.example.andro.moviedb;
-
-import android.graphics.Movie;
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
+package com.example.andro.moviedb.Movies;
 
 /**
- * Created by andro on 19-07-2017.
+ * Created by andro on 21-07-2017.
  */
 
-public class MovieResponse {
-    @SerializedName("results")
-    List<MovieResults> results;
+public class MovieResults {
 
-
-}
-
-
-  class MovieResults{
-
-     private int id;
-     private float vote;
-     private String title;
-     private String poster_path;
-     private String overview;
-     private String release_date;
+    private int id;
+    private float vote;
+    private String title;
+    private String poster_path;
+    private String overview;
+    private String release_date;
 
     public int getId() {
         return id;
@@ -74,4 +60,6 @@ public class MovieResponse {
     public void setRelease_date(String release_date) {
         this.release_date = release_date;
     }
+
+
 }

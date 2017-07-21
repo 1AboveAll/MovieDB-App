@@ -1,4 +1,4 @@
-package com.example.andro.moviedb;
+package com.example.andro.moviedb.Movies;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.andro.moviedb.MovieDBConstants;
+import com.example.andro.moviedb.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
