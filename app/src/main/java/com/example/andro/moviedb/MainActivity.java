@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
+        //Loads All the Fragments in this Activity
+        mViewPager.setOffscreenPageLimit(3);
         mTabLayout=(TabLayout)findViewById(R.id.tab_layout);
         mTabLayout.setupWithViewPager(mViewPager);
 

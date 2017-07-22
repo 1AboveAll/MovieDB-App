@@ -12,6 +12,4 @@ public class TvResponse {
 
     @SerializedName("results")
     List<TvResults> tvresults;
-
-
 }
