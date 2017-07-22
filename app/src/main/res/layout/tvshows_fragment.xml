@@ -104,19 +104,19 @@
             android:layout_height="250dp">
 
             <TextView
-                android:id="@+id/popularMoviesTextView"
+                android:id="@+id/airingTodayTextView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_margin="5dp"
                 android:gravity="bottom"
                 android:textStyle="bold"
-                android:text="Most Popular Movies"
+                android:text="Airing Today"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:textColor="@color/textColor" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/popularMovies"
+                android:id="@+id/airingToday"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="5dp"

@@ -15,7 +15,7 @@
         android:layout_margin="10dp"
         android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
-        android:layout_height="275dp">
+        android:layout_height="250dp">
 
         <TextView
             android:id="@+id/nowShowingTextView"
@@ -70,7 +70,7 @@
             android:layout_margin="10dp"
             android:background="@color/colorPrimaryDark"
             android:layout_width="match_parent"
-            android:layout_height="275dp">
+            android:layout_height="250dp">
 
             <TextView
                 android:id="@+id/topRatedTextView"
@@ -96,7 +96,7 @@
         android:layout_margin="10dp"
         android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
-        android:layout_height="275dp">
+        android:layout_height="250dp">
 
         <TextView
             android:id="@+id/popularMoviesTextView"
@@ -123,7 +123,7 @@
             android:layout_margin="10dp"
             android:background="@color/colorPrimaryDark"
             android:layout_width="match_parent"
-            android:layout_height="275dp">
+            android:layout_height="250dp">
 
             <TextView
                 android:id="@+id/genreTextView"

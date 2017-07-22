@@ -19,4 +19,7 @@ public interface TvInterface {
 
     @GET("top_rated?api_key="+ MovieDBConstants.API_KEY+"&language=en-US")
     Call<TvResponse>topRated();
+
+    @GET("airing_today?api_key="+MovieDBConstants.API_KEY+"&language=en-US")
+    Call<TvResponse>airingToday();
 }

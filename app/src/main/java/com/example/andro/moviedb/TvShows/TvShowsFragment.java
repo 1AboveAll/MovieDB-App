@@ -41,11 +41,11 @@ public class TvShowsFragment extends Fragment {
     List<TvResults> topRatedTvResultsList;
     RecyclerView topRatedTv;
     TvAdapter topRatedTvAdapter;
-//
-//
-//    List<MovieResults> popularMoviesResultsList;
-//    RecyclerView popularMovies;
-//    MoviesAdapter popularMoviesAdapter;
+
+
+    List<TvResults> airingTodayResultsList;
+    RecyclerView airingToday;
+    TvAdapter airingTodayAdapter;
 
 
 
@@ -95,18 +95,18 @@ public class TvShowsFragment extends Fragment {
         });
         topRatedTv.setAdapter(topRatedTvAdapter);
         topRatedTv.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-//
-//
-//        popularMovies=v.findViewById(R.id.popularMovies);
-//        popularMoviesResultsList=new ArrayList<>();
-//        popularMoviesAdapter =new MoviesAdapter(getContext(), popularMoviesResultsList, new MoviesAdapter.MoviesClickListener() {
-//            @Override
-//            public void onMovieClick(View view, int position) {
-//
-//            }
-//        });
-//        popularMovies.setAdapter(popularMoviesAdapter);
-//        popularMovies.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+
+
+        airingToday=v.findViewById(R.id.airingToday);
+        airingTodayResultsList=new ArrayList<>();
+        airingTodayAdapter= new TvAdapter(getContext(), airingTodayResultsList, new TvAdapter.TvClickListener() {
+            @Override
+            public void onTvClick(View v, int position) {
+
+            }
+        });
+        airingToday.setAdapter(airingTodayAdapter);
+        airingToday.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
 
 //
@@ -170,21 +170,21 @@ public class TvShowsFragment extends Fragment {
         });
 //
 //        //Most Popular Movies
-//        Call<MovieResponse> getPopular=moviesInterface.getPopular();
-//        getPopular.enqueue(new Callback<MovieResponse>() {
-//            @Override
-//            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-//                MovieResponse movieResponse=response.body();
-//                List<MovieResults>movieResults=movieResponse.results;
-//                popularMoviesResultsList.addAll(movieResults);
-//                popularMoviesAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<MovieResponse> call, Throwable t) {
-//
-//            }
-//        });
+           Call<TvResponse> airingToday =tvInterface.airingToday();
+        airingToday.enqueue(new Callback<TvResponse>() {
+            @Override
+            public void onResponse(Call<TvResponse> call, Response<TvResponse> response) {
+                TvResponse tvResponse=response.body();
+                List<TvResults>tvResults=tvResponse.tvresults;
+                airingTodayResultsList.addAll(tvResults);
+                airingTodayAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<TvResponse> call, Throwable t) {
+
+            }
+        });
 
 
 
