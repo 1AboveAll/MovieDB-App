@@ -34,13 +34,13 @@ public class TvShowsFragment extends Fragment {
     TvAdapter onTheAirAdapter;
     RecyclerView onTheAir;
 
-//    List<MovieResults> comingSoonResultsList;
-//    RecyclerView comingSoon;
-//    MoviesAdapter comingSoonAdapter;
-//
-//    List<MovieResults>topRatedResultsList;
-//    RecyclerView topRated;
-//    MoviesAdapter topRatedMoviesAdapter;
+    List<TvResults> popularTvResultsList;
+    RecyclerView popularTv;
+    TvAdapter popularTvAdapter;
+
+    List<TvResults> topRatedTvResultsList;
+    RecyclerView topRatedTv;
+    TvAdapter topRatedTvAdapter;
 //
 //
 //    List<MovieResults> popularMoviesResultsList;
@@ -56,7 +56,7 @@ public class TvShowsFragment extends Fragment {
         View v=inflater.inflate(R.layout.tvshows_fragment,container,false);
 
 
-        // Now Showing Recycler View
+        // On The Air Recycler View
         onTheAir=v.findViewById(R.id.onTheAir);
         onTheAirResultsList=new ArrayList<>();
        onTheAirAdapter =new TvAdapter(getContext(), onTheAirResultsList, new TvAdapter.TvClickListener() {
@@ -72,30 +72,29 @@ public class TvShowsFragment extends Fragment {
 
 
 
-//        // Now Showing Recycler View
-//        comingSoon=v.findViewById(R.id.comingSoon);
-//        comingSoonResultsList=new ArrayList<>();
-//        comingSoonAdapter= new MoviesAdapter(getContext(), comingSoonResultsList, new MoviesAdapter.MoviesClickListener() {
-//            @Override
-//            public void onMovieClick(View view, int position) {
-//                //Coming Soon Clicks Handled Here
-//
-//            }
-//        });
-//        comingSoon.setAdapter(comingSoonAdapter);
-//        comingSoon.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-//
+//        // Popular Recycler View
+        popularTv=v.findViewById(R.id.popularTv);
+        popularTvResultsList=new ArrayList<>();
+        popularTvAdapter= new TvAdapter(getContext(), popularTvResultsList, new TvAdapter.TvClickListener() {
+            @Override
+            public void onTvClick(View v, int position) {
+
+            }
+        });
+        popularTv.setAdapter(popularTvAdapter);
+        popularTv.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+
 //        // Top Rated Recycler View
-//        topRated=v.findViewById(R.id.topRated);
-//        topRatedResultsList=new ArrayList<>();
-//        topRatedMoviesAdapter= new MoviesAdapter(getContext(), topRatedResultsList, new MoviesAdapter.MoviesClickListener() {
-//            @Override
-//            public void onMovieClick(View view, int position) {
-//                // Top Rated Clicks Handled Here
-//            }
-//        });
-//        topRated.setAdapter(topRatedMoviesAdapter);
-//        topRated.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        topRatedTv=v.findViewById(R.id.topRatedTv);
+        topRatedTvResultsList=new ArrayList<>();
+        topRatedTvAdapter= new TvAdapter(getContext(), topRatedTvResultsList, new TvAdapter.TvClickListener() {
+            @Override
+            public void onTvClick(View v, int position) {
+
+            }
+        });
+        topRatedTv.setAdapter(topRatedTvAdapter);
+        topRatedTv.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 //
 //
 //        popularMovies=v.findViewById(R.id.popularMovies);
@@ -116,7 +115,7 @@ public class TvShowsFragment extends Fragment {
 //
 
 
-        //Now Showing
+        //OnTheAir
         Call<TvResponse> onTheAir =tvInterface.onTheAir();
         onTheAir.enqueue(new Callback<TvResponse>() {
             @Override
@@ -136,40 +135,39 @@ public class TvShowsFragment extends Fragment {
 
 //
 //        //Coming Soon
-//        Call<MovieResponse> getUpcoming=moviesInterface.getUpcoming();
-//        getUpcoming.enqueue(new Callback<MovieResponse>() {
-//            @Override
-//            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-//                MovieResponse movieResponse=response.body();
-//                List<MovieResults>movieResults=movieResponse.results;
-//                comingSoonResultsList.addAll(movieResults);
-//                comingSoonAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<MovieResponse> call, Throwable t) {
-//
-//            }
-//        });
+        Call<TvResponse> popular =tvInterface.popular();
+        popular.enqueue(new Callback<TvResponse>() {
+            @Override
+            public void onResponse(Call<TvResponse> call, Response<TvResponse> response) {
+                TvResponse tvResponse=response.body();
+                List<TvResults>tvResults=tvResponse.tvresults;
+                popularTvResultsList.addAll(tvResults);
+                popularTvAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<TvResponse> call, Throwable t) {
+
+            }
+        });
 //
 //
 //        //Top Rated
-//        final Call<MovieResponse> topRated=moviesInterface.topRated();
-//        topRated.enqueue(new Callback<MovieResponse>() {
-//            @Override
-//            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-//                MovieResponse movieResponse=response.body();
-//                List<MovieResults>movieResults=movieResponse.results;
-//                topRatedResultsList.addAll(movieResults);
-//                topRatedMoviesAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<MovieResponse> call, Throwable t) {
-//
-//            }
-//        });
-//
+        Call<TvResponse> topRated =tvInterface.topRated();
+        topRated.enqueue(new Callback<TvResponse>() {
+            @Override
+            public void onResponse(Call<TvResponse> call, Response<TvResponse> response) {
+                TvResponse tvResponse=response.body();
+                List<TvResults>tvResults=tvResponse.tvresults;
+                topRatedTvResultsList.addAll(tvResults);
+                topRatedTvAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<TvResponse> call, Throwable t) {
+
+            }
+        });
 //
 //        //Most Popular Movies
 //        Call<MovieResponse> getPopular=moviesInterface.getPopular();

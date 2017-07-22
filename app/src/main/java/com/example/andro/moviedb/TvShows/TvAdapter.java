@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.andro.moviedb.MovieDBConstants;
-import com.example.andro.moviedb.Movies.MovieResults;
 import com.example.andro.moviedb.R;
 import com.squareup.picasso.Picasso;
 

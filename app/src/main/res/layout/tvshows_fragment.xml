@@ -37,44 +37,16 @@
                 android:layout_weight="5"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            android:background="@color/colorPrimaryDark"
-            android:layout_width="match_parent"
-            android:layout_height="275dp">
-
-            <TextView
-                android:id="@+id/nowShowingTextView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:gravity="bottom"
-                android:text="Now Showing"
-                android:textStyle="bold"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:textColor="@color/textColor" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/nowShowing"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="5dp"
-                android:layout_weight="5" />
-        </LinearLayout>
-
-
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_margin="10dp"
             android:background="@color/colorPrimaryDark"
             android:layout_width="match_parent"
-            android:layout_height="275dp">
+            android:layout_height="250dp">
 
             <TextView
-                android:id="@+id/topRatedTextView"
+                android:id="@+id/topRatedTvTextView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -86,18 +58,50 @@
                 android:textColor="@color/textColor" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/topRated"
+                android:id="@+id/topRatedTv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="5dp"
                 android:layout_weight="5"/>
         </LinearLayout>
+
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_margin="10dp"
             android:background="@color/colorPrimaryDark"
             android:layout_width="match_parent"
-            android:layout_height="275dp">
+            android:layout_height="250dp">
+
+            <TextView
+                android:id="@+id/popularTvTextView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:gravity="bottom"
+                android:text="Popular"
+                android:textStyle="bold"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/textColor" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/popularTv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="5" />
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
 
             <TextView
                 android:id="@+id/popularMoviesTextView"
@@ -124,7 +128,7 @@
             android:layout_margin="10dp"
             android:background="@color/colorPrimaryDark"
             android:layout_width="match_parent"
-            android:layout_height="275dp">
+            android:layout_height="250dp">
 
             <TextView
                 android:id="@+id/genreTextView"
