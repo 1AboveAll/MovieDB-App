@@ -1,5 +1,7 @@
 package com.example.andro.moviedb;
 
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,11 +19,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-import com.example.andro.moviedb.Movies.MoviesFragment;
-import com.example.andro.moviedb.People.PeopleFragment;
-import com.example.andro.moviedb.TvShows.TvShowsFragment;
-
-public class MainActivity extends AppCompatActivity {
+public class MovieTap extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -32,17 +30,16 @@ public class MainActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private TabLayout mTabLayout;
 
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
+    TabLayout mTabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_movie_tap);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,10 +50,12 @@ public class MainActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        //Loads All the Fragments in this Activity
+
         mViewPager.setOffscreenPageLimit(3);
-        mTabLayout=(TabLayout)findViewById(R.id.tab_layout);
+        mTabLayout=(TabLayout)findViewById(R.id.movie_tab_layout);
         mTabLayout.setupWithViewPager(mViewPager);
+
+
 
     }
 
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_movie_tap, menu);
         return true;
     }
 
@@ -109,9 +108,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView =  rootView.findViewById(R.id.section_label);
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_movie_tap, container, false);
+            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
@@ -129,26 +129,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-
-            if(position==0){
-                MoviesFragment moviesFragment = new MoviesFragment();
-
-
-                return moviesFragment;
-            }
-            if(position==1){
-                TvShowsFragment tvShowsFragment=new TvShowsFragment();
-
-                return tvShowsFragment;
-            }
-            if(position==2){
-                PeopleFragment peopleFragment=new PeopleFragment();
-
-                return peopleFragment;
-            }
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return null;
+            return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
@@ -161,11 +144,11 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Movies";
+                    return "Details";
                 case 1:
-                    return "TV Shows";
+                    return "Cast";
                 case 2:
-                    return "People";
+                    return "Reviews";
             }
             return null;
         }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="146dp"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="138dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/singleImageView"
+            android:layout_marginLeft="5dp"
+            android:layout_width="92dp"
+            android:layout_height="138dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_height="138dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/yearTextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/textColor"
+            android:shadowColor="@color/textShadow"
+            android:shadowRadius="2"
+            android:textStyle="bold"
+             />
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/textColor"
+            android:shadowColor="@color/textShadow"
+            android:shadowRadius="2"
+            android:textStyle="bold"
+             />
+        <TextView
+            android:id="@+id/ratingTextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/textColor"
+            android:shadowColor="@color/textShadow"
+            android:shadowRadius="2"
+            android:textStyle="bold"
+            android:gravity="bottom"/>
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

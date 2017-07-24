@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.andro.moviedb.MovieDBClient;
 import com.example.andro.moviedb.R;
 
 import java.util.ArrayList;
@@ -105,7 +106,7 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
 
 
 
-                Retrofit retrofit = MoviesClient.getMoviesClient();
+                Retrofit retrofit = MovieDBClient.getClient();
         MoviesInterface moviesInterface =retrofit.create(MoviesInterface.class);
 
 

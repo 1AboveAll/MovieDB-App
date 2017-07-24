@@ -2,6 +2,7 @@ package com.example.andro.moviedb.Movies;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
             MovieResults s = mList.get(position);
             Picasso.with(mContext).load(MovieDBConstants.MOVIE_IMAGE_BASE_URL+s.getPoster_path()).into(holder.contentImageView);
             holder.contentTextView.setText(s.getTitle()+" ("+s.getRelease_date().substring(0,4)+")");
+        Log.i("LogSize",s.getTitle()+"");
     }
     @Override
     public int getItemCount() {

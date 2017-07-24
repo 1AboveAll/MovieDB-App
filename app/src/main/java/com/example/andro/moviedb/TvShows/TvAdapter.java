@@ -30,8 +30,6 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.TvShowsViewHolder>
     }
 
 
-
-
     @Override
     public TvShowsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(mContext).inflate(R.layout.image_item,parent,false);
@@ -46,7 +44,6 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.TvShowsViewHolder>
         TvResults s = mList.get(position);
         Picasso.with(mContext).load(MovieDBConstants.MOVIE_IMAGE_BASE_URL+s.getPoster_path()).into(holder.contentImageView);
         holder.contentTextView.setText(s.getName());
-
 
     }
 

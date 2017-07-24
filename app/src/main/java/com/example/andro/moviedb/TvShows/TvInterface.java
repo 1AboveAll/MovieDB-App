@@ -11,15 +11,15 @@ import retrofit2.http.GET;
 
 public interface TvInterface {
 
-    @GET("on_the_air?api_key="+ MovieDBConstants.API_KEY+"&language=en-US")
+    @GET("tv/on_the_air?api_key="+ MovieDBConstants.API_KEY+"&language=en-US")
     Call<TvResponse> onTheAir();
 
-    @GET("popular?api_key="+ MovieDBConstants.API_KEY+"&language=en-US")
+    @GET("tv/popular?api_key="+ MovieDBConstants.API_KEY+"&language=en-US")
     Call<TvResponse>popular();
 
-    @GET("top_rated?api_key="+ MovieDBConstants.API_KEY+"&language=en-US")
+    @GET("tv/top_rated?api_key="+ MovieDBConstants.API_KEY+"&language=en-US")
     Call<TvResponse>topRated();
 
-    @GET("airing_today?api_key="+MovieDBConstants.API_KEY+"&language=en-US")
+    @GET("tv/airing_today?api_key="+MovieDBConstants.API_KEY+"&language=en-US")
     Call<TvResponse>airingToday();
 }

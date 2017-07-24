@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.andro.moviedb.MovieDBClient;
 import com.example.andro.moviedb.Movies.MovieResponse;
 import com.example.andro.moviedb.Movies.MovieResults;
 import com.example.andro.moviedb.Movies.MoviesAdapter;
@@ -110,7 +111,7 @@ public class TvShowsFragment extends Fragment {
 
 
 //
-        Retrofit tvretrofit = TvClient.getTvClient();
+        Retrofit tvretrofit = MovieDBClient.getClient();
         TvInterface tvInterface =tvretrofit.create(TvInterface.class);
 //
 
