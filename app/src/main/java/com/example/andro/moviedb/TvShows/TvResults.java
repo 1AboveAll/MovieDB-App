@@ -2,11 +2,13 @@ package com.example.andro.moviedb.TvShows;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by andro on 21-07-2017.
  */
 
-public class TvResults {
+public class TvResults implements Serializable{
 
     private int id;
     private String name;

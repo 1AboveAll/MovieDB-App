@@ -1,5 +1,6 @@
 package com.example.andro.moviedb.Movies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.andro.moviedb.MovieDBClient;
+import com.example.andro.moviedb.MovieTap;
 import com.example.andro.moviedb.R;
 
 import java.util.ArrayList;
@@ -58,14 +60,18 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
             @Override
             public void onMovieClick(View view, int position) {
                 //Now Showing Clicks Handled Here
+
+                MovieResults movieResults=nowShowingResultsList.get(position);
+                Intent i=new Intent(getContext(), MovieTap.class);
+                i.putExtra("Movie",movieResults);
+                startActivity(i);
+
             }
         });
+
         nowShowing.setAdapter(nowShowingAdapter);
         nowShowing.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         //nowShowing.setLayoutManager(new GridLayoutManager(getContext(),1,GridLayoutManager.HORIZONTAL,false));
-
-
-
 
         // Now Showing Recycler View
         comingSoon=v.findViewById(R.id.comingSoon);
@@ -74,9 +80,14 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
             @Override
             public void onMovieClick(View view, int position) {
                 //Coming Soon Clicks Handled Here
+                MovieResults movieResults=comingSoonResultsList.get(position);
+                Intent i=new Intent(getContext(), MovieTap.class);
+                i.putExtra("Movie",movieResults);
+                startActivity(i);
 
             }
         });
+
         comingSoon.setAdapter(comingSoonAdapter);
         comingSoon.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
@@ -87,11 +98,15 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
             @Override
             public void onMovieClick(View view, int position) {
                 // Top Rated Clicks Handled Here
+                MovieResults movieResults=topRatedResultsList.get(position);
+                Intent i=new Intent(getContext(), MovieTap.class);
+                i.putExtra("Movie",movieResults);
+                startActivity(i);
             }
         });
+
         topRated.setAdapter(topRatedMoviesAdapter);
         topRated.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-
 
         popularMovies=v.findViewById(R.id.popularMovies);
         popularMoviesResultsList=new ArrayList<>();
@@ -99,17 +114,20 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
             @Override
             public void onMovieClick(View view, int position) {
 
+                MovieResults movieResults=popularMoviesResultsList.get(position);
+                Intent i=new Intent(getContext(), MovieTap.class);
+                i.putExtra("Movie",movieResults);
+                startActivity(i);
+
             }
         });
+
         popularMovies.setAdapter(popularMoviesAdapter);
         popularMovies.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
-
-
-                Retrofit retrofit = MovieDBClient.getClient();
+        //Retrofit Instance
+        Retrofit retrofit = MovieDBClient.getClient();
         MoviesInterface moviesInterface =retrofit.create(MoviesInterface.class);
-
-
 
         //Now Showing
         Call<MovieResponse> getPlaying =moviesInterface.getPlaying();
@@ -130,7 +148,6 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
             }
         });
 
-
         //Coming Soon
         Call<MovieResponse> getUpcoming=moviesInterface.getUpcoming();
         getUpcoming.enqueue(new Callback<MovieResponse>() {
@@ -147,7 +164,6 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
 
             }
         });
-
 
         //Top Rated
         final Call<MovieResponse> topRated=moviesInterface.topRated();
@@ -166,7 +182,6 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
             }
         });
 
-
         //Most Popular Movies
         Call<MovieResponse> getPopular=moviesInterface.getPopular();
         getPopular.enqueue(new Callback<MovieResponse>() {
@@ -183,9 +198,6 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
 
             }
         });
-
-
-
 
         return v;
     }
