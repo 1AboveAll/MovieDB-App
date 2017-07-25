@@ -5,16 +5,21 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.andro.moviedb.MovieDBClient;
+import com.example.andro.moviedb.Movies.MovieResults;
 import com.example.andro.moviedb.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**
@@ -22,6 +27,7 @@ import retrofit2.Retrofit;
  */
 
 public class CastFragment extends Fragment {
+
 
     List<Cast> castList;
     RecyclerView moviesCastCastRecyclerView;
@@ -32,8 +38,11 @@ public class CastFragment extends Fragment {
     CrewAdapter crewAdapter;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.movies_cast_frament,container,false);
 
+
+        View v=inflater.inflate(R.layout.movies_cast_frament,container,false);
+        MovieResults movieResults = (MovieResults)this.getArguments().getSerializable("MovieResults");
+        Log.i("Movie_ID",movieResults.getId()+"");
         castList=new ArrayList<>();
         moviesCastCastRecyclerView=v.findViewById(R.id.movie_cast_cast_recycler_view);
         castAdapter=new CastAdapter(getContext(), castList, new CastAdapter.CastClickListener() {
@@ -47,7 +56,22 @@ public class CastFragment extends Fragment {
 
 
         Retrofit retrofit= MovieDBClient.getClient();
+        final CastInterface castInterface = retrofit.create(CastInterface.class);
+        Call<CastResponse>castResponse=castInterface.getCredits(movieResults.getId());
+        castResponse.enqueue(new Callback<CastResponse>() {
+            @Override
+            public void onResponse(Call<CastResponse> call, Response<CastResponse> response) {
+                CastResponse castR =response.body();
+                List<Cast> cList=castR.getCast;
+                castList.addAll(cList);
+                castAdapter.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onFailure(Call<CastResponse> call, Throwable t) {
+
+            }
+        });
 
 
 

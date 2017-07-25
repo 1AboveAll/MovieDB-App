@@ -48,7 +48,7 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.CastViewHolder
         Picasso.with(mContext).load(MovieDBConstants.MOVIE_IMAGE_BASE_URL+s.getProfile_path()).into(holder.singleImageView);
         holder.nameTextView.setText(s.getName()+"/"+s.getCharacter());
         holder.nameTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        holder.nameTextView.setTextSize(20);
+        holder.nameTextView.setTextSize(18);
 
     }
 

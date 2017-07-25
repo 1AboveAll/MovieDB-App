@@ -41,6 +41,8 @@ public class MovieTap extends AppCompatActivity {
      */
     private ViewPager mViewPager;
     TabLayout mTabLayout;
+    MovieResults movieResults;
+    CastFragment castFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +53,18 @@ public class MovieTap extends AppCompatActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         Intent i=getIntent();
-        MovieResults movieResults=(MovieResults)i.getSerializableExtra("Movie");
+        movieResults=(MovieResults)i.getSerializableExtra("Movie");
         toolbar.setTitle(movieResults.getTitle());
+        //Sending MovieResults Object to the Fragment
+        Bundle bundle=new Bundle();
+        //bundle.putSerializable("Movie",movieResults);
+        castFragment=new CastFragment();
+        bundle.putSerializable("MovieResults",movieResults);
+        castFragment.setArguments(bundle);
+
         setSupportActionBar(toolbar);
+
+
 
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -147,7 +158,10 @@ public class MovieTap extends AppCompatActivity {
             }
 
             if(position==1){
-                CastFragment castFragment=new CastFragment();
+//                CastFragment castFragment=new CastFragment();
+//                Bundle bundle=new Bundle();
+//                bundle.putSerializable("MovieResults",movieResults);
+//                castFragment.setArguments(bundle);
 
                 return castFragment;
             }
