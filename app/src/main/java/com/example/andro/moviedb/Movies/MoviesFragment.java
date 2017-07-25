@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.andro.moviedb.MovieDBClient;
-import com.example.andro.moviedb.MovieTap;
+import com.example.andro.moviedb.MovieTap.MovieTap;
 import com.example.andro.moviedb.R;
 
 import java.util.ArrayList;
@@ -39,12 +39,9 @@ public class MoviesFragment extends android.support.v4.app.Fragment {
     RecyclerView topRated;
     MoviesAdapter topRatedMoviesAdapter;
 
-
     List<MovieResults> popularMoviesResultsList;
     RecyclerView popularMovies;
     MoviesAdapter popularMoviesAdapter;
-
-
 
 
     @Nullable

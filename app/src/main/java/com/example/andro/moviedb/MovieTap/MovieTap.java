@@ -1,5 +1,6 @@
-package com.example.andro.moviedb;
+package com.example.andro.moviedb.MovieTap;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -18,6 +19,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+
+import com.example.andro.moviedb.MovieTap.CastFragment.CastFragment;
+import com.example.andro.moviedb.Movies.MovieResults;
+import com.example.andro.moviedb.R;
 
 public class MovieTap extends AppCompatActivity {
 
@@ -42,9 +47,15 @@ public class MovieTap extends AppCompatActivity {
         setContentView(R.layout.activity_movie_tap);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
+        Intent i=getIntent();
+        MovieResults movieResults=(MovieResults)i.getSerializableExtra("Movie");
+        toolbar.setTitle(movieResults.getTitle());
+        setSupportActionBar(toolbar);
+
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
@@ -54,6 +65,7 @@ public class MovieTap extends AppCompatActivity {
         mViewPager.setOffscreenPageLimit(3);
         mTabLayout=(TabLayout)findViewById(R.id.movie_tab_layout);
         mTabLayout.setupWithViewPager(mViewPager);
+
 
 
 
@@ -129,9 +141,25 @@ public class MovieTap extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
+            if(position==0){
+
+                return PlaceholderFragment.newInstance(position + 1);
+            }
+
+            if(position==1){
+                CastFragment castFragment=new CastFragment();
+
+                return castFragment;
+            }
+
+            if(position==2){
+
+               return PlaceholderFragment.newInstance(position + 1);
+            }
+
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            return null;
         }
 
         @Override

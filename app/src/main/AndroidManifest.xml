@@ -23,7 +23,7 @@
 
         </activity>
         <activity
-            android:name=".MovieTap"
+            android:name=".MovieTap.MovieTap"
             android:label="@string/title_activity_movie_tap"
             android:theme="@style/AppTheme.NoActionBar">
 
