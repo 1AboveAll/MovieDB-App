@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.andro.moviedb.MovieTap.CastFragment.CastFragment;
+import com.example.andro.moviedb.MovieTap.InfoFragment.InfoFragment;
 import com.example.andro.moviedb.Movies.MovieResults;
 import com.example.andro.moviedb.R;
 
@@ -43,6 +44,7 @@ public class MovieTap extends AppCompatActivity {
     TabLayout mTabLayout;
     MovieResults movieResults;
     CastFragment castFragment;
+    InfoFragment infoFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,9 @@ public class MovieTap extends AppCompatActivity {
         castFragment=new CastFragment();
         bundle.putSerializable("MovieResults",movieResults);
         castFragment.setArguments(bundle);
+
+        infoFragment=new InfoFragment();
+        infoFragment.setArguments(bundle);
 
         setSupportActionBar(toolbar);
 
@@ -154,11 +159,11 @@ public class MovieTap extends AppCompatActivity {
         public Fragment getItem(int position) {
             if(position==0){
 
-                return PlaceholderFragment.newInstance(position + 1);
+                return infoFragment;
             }
 
             if(position==1){
-//                CastFragment castFragment=new CastFragment();
+                //CastFragment castFragment=new CastFragment();
 //                Bundle bundle=new Bundle();
 //                bundle.putSerializable("MovieResults",movieResults);
 //                castFragment.setArguments(bundle);

@@ -9,25 +9,37 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Overview :"
+                android:textStyle="bold"
+                android:textColor="@color/textColor"
 
+                android:layout_margin="2dp"/>
             <TextView
                 android:id="@+id/movie_info_overview"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:textColor="@color/textColor"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_margin="5dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_margin="2dp">
                 <TextView
-                    android:id="@+id/movie_info_release_date"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Release :"
@@ -37,8 +49,12 @@
                     />
 
                 <TextView
+                    android:id="@+id/movie_info_release_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/textColor"
+                    android:layout_margin="2dp"
+
                     />
 
             </LinearLayout>
@@ -46,34 +62,45 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_margin="2dp"
                 android:layout_weight="1">
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_margin="2dp"
+                    android:text="Budget :"
+                    android:textColor="@color/textColor"
+                    android:textStyle="bold"/>
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:id="@+id/movie_info_budget"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:textColor="@color/textColor"
+                    android:layout_margin="2dp"
+                    />
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_margin="2dp"
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_margin="2dp"
+                    android:textColor="@color/textColor"
+                    android:textStyle="bold"
+                    android:text="Revenue :"
+                    />
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                     />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -90,6 +117,60 @@
                     android:layout_weight="1"/>
             </LinearLayout>
 
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+                <TextView
+                    android:id="@+id/movie_info_similar"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:gravity="bottom"
+                    android:text="Similar Movies"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/textColor" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/movie_info_similar_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+                <TextView
+                    android:id="@+id/movie_info_recommendations"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:gravity="bottom"
+                    android:text="Recommendations"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/textColor" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/movie_info_recommendations_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="5" />
+            </LinearLayout>
 
         </LinearLayout>
 

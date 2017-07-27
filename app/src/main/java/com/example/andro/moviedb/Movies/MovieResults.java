@@ -1,5 +1,7 @@
 package com.example.andro.moviedb.Movies;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +11,7 @@ import java.io.Serializable;
 public class MovieResults implements Serializable {
 
     private int id;
+    @SerializedName("vote_average")
     private float vote;
     private String title;
     private String poster_path;

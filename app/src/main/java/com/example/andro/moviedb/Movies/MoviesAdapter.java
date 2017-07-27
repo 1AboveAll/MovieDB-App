@@ -42,7 +42,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
     @Override
     public void onBindViewHolder(MoviesViewHolder holder, int position) {
             MovieResults s = mList.get(position);
-            Picasso.with(mContext).load(MovieDBConstants.MOVIE_IMAGE_BASE_URL+s.getPoster_path()).into(holder.contentImageView);
+            if(s.getPoster_path()==null) {
+                Picasso.with(mContext).load(R.drawable.no_image).into(holder.contentImageView);
+            }else {
+                Picasso.with(mContext).load(MovieDBConstants.MOVIE_IMAGE_BASE_URL + s.getPoster_path()).into(holder.contentImageView);
+            }
             holder.contentTextView.setText(s.getTitle()+" ("+s.getRelease_date().substring(0,4)+")");
         Log.i("LogSize",s.getTitle()+"");
     }

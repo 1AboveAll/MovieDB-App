@@ -45,7 +45,11 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.CastViewHolder
     public void onBindViewHolder(CastAdapter.CastViewHolder holder, int position) {
 
         Cast s = mList.get(position);
-        Picasso.with(mContext).load(MovieDBConstants.MOVIE_IMAGE_BASE_URL+s.getProfile_path()).into(holder.singleImageView);
+        if (s.getProfile_path() == null) {
+            Picasso.with(mContext).load(R.drawable.no_image).into(holder.singleImageView);
+        }else {
+            Picasso.with(mContext).load(MovieDBConstants.MOVIE_IMAGE_BASE_URL + s.getProfile_path()).into(holder.singleImageView);
+        }
         holder.nameTextView.setText(s.getName()+"/"+s.getCharacter());
         holder.nameTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         holder.nameTextView.setTextSize(18);

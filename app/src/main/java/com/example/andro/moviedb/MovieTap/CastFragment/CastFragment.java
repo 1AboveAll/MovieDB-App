@@ -55,8 +55,23 @@ public class CastFragment extends Fragment {
         moviesCastCastRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
 
 
+        crewList=new ArrayList<>();
+        moviesCastCrewRecyclerView=v.findViewById(R.id.movie_cast_crew_recycler_view);
+        crewAdapter=new CrewAdapter(getContext(), crewList, new CrewAdapter.CrewClickListener() {
+            @Override
+            public void onCrewClick(View v, int position) {
+
+            }
+        });
+        moviesCastCrewRecyclerView.setAdapter(crewAdapter);
+        moviesCastCrewRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+
+
+
         Retrofit retrofit= MovieDBClient.getClient();
         final CastInterface castInterface = retrofit.create(CastInterface.class);
+
+
         Call<CastResponse>castResponse=castInterface.getCredits(movieResults.getId());
         castResponse.enqueue(new Callback<CastResponse>() {
             @Override
@@ -73,7 +88,21 @@ public class CastFragment extends Fragment {
             }
         });
 
+        Call<CastResponse>crewResponse=castInterface.getCredits(movieResults.getId());
+        crewResponse.enqueue(new Callback<CastResponse>() {
+            @Override
+            public void onResponse(Call<CastResponse> call, Response<CastResponse> response) {
+                CastResponse crewR=response.body();
+                List<Crew> crList=crewR.getCrew;
+                crewList.addAll(crList);
+                crewAdapter.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onFailure(Call<CastResponse> call, Throwable t) {
+
+            }
+        });
 
 
 
