@@ -47,7 +47,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
             }else {
                 Picasso.with(mContext).load(MovieDBConstants.MOVIE_IMAGE_BASE_URL + s.getPoster_path()).into(holder.contentImageView);
             }
-            holder.contentTextView.setText(s.getTitle()+" ("+s.getRelease_date().substring(0,4)+")");
+            if(s.getRelease_date()!=null){
+                holder.contentTextView.setText(s.getTitle()+" ("+s.getRelease_date().substring(0,4)+")");
+            }else
+            {
+                holder.contentTextView.setText(s.getTitle());
+            }
+
         Log.i("LogSize",s.getTitle()+"");
     }
     @Override
