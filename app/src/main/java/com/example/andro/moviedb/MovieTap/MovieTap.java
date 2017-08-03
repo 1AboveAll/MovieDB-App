@@ -20,10 +20,20 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.example.andro.moviedb.MovieDBClient;
 import com.example.andro.moviedb.MovieTap.CastFragment.CastFragment;
 import com.example.andro.moviedb.MovieTap.InfoFragment.InfoFragment;
 import com.example.andro.moviedb.Movies.MovieResults;
 import com.example.andro.moviedb.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import me.relex.circleindicator.CircleIndicator;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MovieTap extends AppCompatActivity {
 
@@ -41,10 +51,20 @@ public class MovieTap extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+
     TabLayout mTabLayout;
     MovieResults movieResults;
+
     CastFragment castFragment;
     InfoFragment infoFragment;
+
+
+    //Slider
+    List<MovieBackdrop> movieImages;
+    SliderAdapter sliderAdapter;
+    ViewPager movieSlider;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +89,11 @@ public class MovieTap extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
+        //Slider
+        movieImages=new ArrayList<>();
+        movieSlider=(ViewPager)findViewById(R.id.movie_slider_view_pager);
+        sliderAdapter=new SliderAdapter(this,movieImages);
+        movieSlider.setAdapter(sliderAdapter);
 
 
 
@@ -82,6 +107,36 @@ public class MovieTap extends AppCompatActivity {
         mTabLayout=(TabLayout)findViewById(R.id.movie_tab_layout);
         mTabLayout.setupWithViewPager(mViewPager);
 
+        //Retrofit Instance
+        Retrofit retrofit = MovieDBClient.getClient();
+        MovieImageInterface movieImageInterface=retrofit.create(MovieImageInterface.class);
+
+
+        final Call<ImageResponse> movieImage=movieImageInterface.getMovieImages(movieResults.getId());
+        movieImage.enqueue(new Callback<ImageResponse>() {
+            @Override
+            public void onResponse(Call<ImageResponse> call, Response<ImageResponse> response) {
+                ImageResponse imageResponse=response.body();
+                List<MovieBackdrop> backdropList= imageResponse.backdropList;
+               // List<MovieBackdrop> posterList =imageResponse.posterList;
+//                if(posterList.size()>0) {
+//                    movieImages.add(posterList.get(0));
+//                }
+                if(backdropList.size()>6){
+                    movieImages.addAll(backdropList.subList(0,6));
+                }
+                else if(backdropList.size()!=0){
+                    movieImages.addAll(backdropList);
+                }
+                sliderAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onFailure(Call<ImageResponse> call, Throwable t) {
+
+            }
+        });
 
 
 
@@ -171,10 +226,6 @@ public class MovieTap extends AppCompatActivity {
                 return castFragment;
             }
 
-            if(position==2){
-
-               return PlaceholderFragment.newInstance(position + 1);
-            }
 
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
@@ -184,7 +235,7 @@ public class MovieTap extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
 
         @Override
@@ -194,8 +245,6 @@ public class MovieTap extends AppCompatActivity {
                     return "Details";
                 case 1:
                     return "Cast";
-                case 2:
-                    return "Reviews";
             }
             return null;
         }

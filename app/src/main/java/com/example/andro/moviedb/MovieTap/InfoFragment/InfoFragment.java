@@ -38,7 +38,8 @@ public class InfoFragment extends Fragment {
 
     TextView movieInfoOverview;
     TextView movieInfoReleaseDate;
-
+    TextView movieInfoBudget;
+    TextView movieInfoRevenue;
 
 
     RecyclerView similarMovies;
@@ -60,7 +61,14 @@ public class InfoFragment extends Fragment {
         movieInfoOverview.setText(movieResults.getOverview());
         //Setting Release Data
         movieInfoReleaseDate=v.findViewById(R.id.movie_info_release_date);
-        movieInfoReleaseDate.setText(movieResults.getRelease_date());
+        String tempDate=movieResults.getRelease_date();
+        String tempArr[]=tempDate.split("-");
+        String Date=tempArr[2]+"-"+tempArr[1]+"-"+tempArr[0];
+        movieInfoReleaseDate.setText(Date);
+
+        //Setting Budget & Revenue
+        movieInfoBudget=v.findViewById(R.id.movie_info_budget);
+        movieInfoRevenue=v.findViewById(R.id.movie_info_revenue);
 
         similarMovies=v.findViewById(R.id.movie_info_similar_recycler_view);
         similarMoviesResults=new ArrayList<>();
@@ -83,7 +91,7 @@ public class InfoFragment extends Fragment {
         recommendedMoviesAdapter=new MoviesAdapter(getContext(), recommendedMoviesResults, new MoviesAdapter.MoviesClickListener() {
             @Override
             public void onMovieClick(View view, int position) {
-                MovieResults movieResults=similarMoviesResults.get(position);
+                MovieResults movieResults=recommendedMoviesResults.get(position);
                 Intent i=new Intent(getContext(), MovieTap.class);
                 i.putExtra("Movie",movieResults);
                 startActivity(i);
@@ -124,7 +132,6 @@ public class InfoFragment extends Fragment {
                 List<MovieResults>movieResult=movieResponse.results;
                 recommendedMoviesResults.addAll(movieResult);
                 recommendedMoviesAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -132,11 +139,35 @@ public class InfoFragment extends Fragment {
 
             }
         });
+        Retrofit retrofit_2= MovieDBClient.getClient();
+        MovieDetailsInterface movieDetailsInterface =retrofit_2.create(MovieDetailsInterface.class);
 
 
+        Call<MovieDetails> movieDetailsCall= movieDetailsInterface.getMovieDetails(movieResults.getId());
+        movieDetailsCall.enqueue(new Callback<MovieDetails>() {
+            @Override
+            public void onResponse(Call<MovieDetails> call, Response<MovieDetails> response) {
+                MovieDetails movieDetails=response.body();
+                if(movieDetails.getBudget()!=0) {
+                    movieInfoBudget.setText("$" + movieDetails.getBudget());
+                }
+                else
+                    movieInfoBudget.setText("N/A");
+                if(movieDetails.getRevenue()!=0){
+                    movieInfoRevenue.setText("$"+movieDetails.getRevenue());
+                }
+                else
+                    movieInfoRevenue.setText("N/A");
+
+            }
+
+            @Override
+            public void onFailure(Call<MovieDetails> call, Throwable t) {
+
+            }
 
 
-
+        });
 
         return v;
     }

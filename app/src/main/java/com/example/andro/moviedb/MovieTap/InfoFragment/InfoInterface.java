@@ -19,7 +19,4 @@ public interface InfoInterface {
     @GET("movie/{movie_id}/recommendations?api_key="+MovieDBConstants.API_KEY+"&language=en-US")
     Call<MovieResponse>recommendedMovies(@Path("movie_id")int movie_id);
 
-
-
-
 }

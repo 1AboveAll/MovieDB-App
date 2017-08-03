@@ -3,16 +3,17 @@ package com.example.andro.moviedb.People;
 import com.example.andro.moviedb.Movies.MovieResults;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by andro on 23-07-2017.
  */
 
-public class PeopleResults {
+public class PeopleResults implements Serializable {
 
     private int id;
-    private String profile_path;
+    private String profile_path;git
     private String name;
     @SerializedName("known_for")
     private List<KnownFor> knownForList;

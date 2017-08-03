@@ -1,12 +1,13 @@
 package com.example.andro.moviedb.People;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by andro on 23-07-2017.
  */
 
-public class KnownFor {
+public class KnownFor implements Serializable {
 
 
     private float vote_average;

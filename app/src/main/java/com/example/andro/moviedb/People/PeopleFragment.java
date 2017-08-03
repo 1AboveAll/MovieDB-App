@@ -1,18 +1,17 @@
 package com.example.andro.moviedb.People;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.andro.moviedb.MovieDBClient;
-import com.example.andro.moviedb.Movies.MoviesAdapter;
+import com.example.andro.moviedb.PeopleTap.PeopleTap;
 import com.example.andro.moviedb.R;
 
 import java.util.ArrayList;
@@ -22,8 +21,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-
-import static com.example.andro.moviedb.R.id.nowShowing;
 
 /**
  * Created by andro on 23-07-2017.
@@ -48,7 +45,9 @@ public class PeopleFragment extends android.support.v4.app.Fragment {
         trendingAdapter = new PeopleAdapter(getContext(), trendingResultsList, new PeopleAdapter.PeopleClickListener() {
             @Override
             public void onPeopleClick(View view, int position) {
-
+                Intent i=new Intent(getContext(), PeopleTap.class);
+                i.putExtra("People",trendingResultsList.get(position));
+                startActivity(i);
             }
         }
 

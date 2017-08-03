@@ -33,16 +33,18 @@ public class CastFragment extends Fragment {
     RecyclerView moviesCastCastRecyclerView;
     CastAdapter castAdapter;
 
-    List<Crew> crewList;
-    RecyclerView moviesCastCrewRecyclerView;
-    CrewAdapter crewAdapter;
+//    List<Crew> crewList;
+//    RecyclerView moviesCastCrewRecyclerView;
+//    CrewAdapter crewAdapter;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
 
         View v=inflater.inflate(R.layout.movies_cast_frament,container,false);
+
         MovieResults movieResults = (MovieResults)this.getArguments().getSerializable("MovieResults");
         Log.i("Movie_ID",movieResults.getId()+"");
+
         castList=new ArrayList<>();
         moviesCastCastRecyclerView=v.findViewById(R.id.movie_cast_cast_recycler_view);
         castAdapter=new CastAdapter(getContext(), castList, new CastAdapter.CastClickListener() {
@@ -55,17 +57,17 @@ public class CastFragment extends Fragment {
         moviesCastCastRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
 
 
-        crewList=new ArrayList<>();
-        moviesCastCrewRecyclerView=v.findViewById(R.id.movie_cast_crew_recycler_view);
-        crewAdapter=new CrewAdapter(getContext(), crewList, new CrewAdapter.CrewClickListener() {
-            @Override
-            public void onCrewClick(View v, int position) {
-
-            }
-        });
-        moviesCastCrewRecyclerView.setAdapter(crewAdapter);
-        moviesCastCrewRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-
+//        crewList=new ArrayList<>();
+//        moviesCastCrewRecyclerView=v.findViewById(R.id.movie_cast_crew_recycler_view);
+//        crewAdapter=new CrewAdapter(getContext(), crewList, new CrewAdapter.CrewClickListener() {
+//            @Override
+//            public void onCrewClick(View v, int position) {
+//
+//            }
+//        });
+//        moviesCastCrewRecyclerView.setAdapter(crewAdapter);
+//        moviesCastCrewRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+//
 
 
         Retrofit retrofit= MovieDBClient.getClient();
@@ -88,21 +90,21 @@ public class CastFragment extends Fragment {
             }
         });
 
-        Call<CastResponse>crewResponse=castInterface.getCredits(movieResults.getId());
-        crewResponse.enqueue(new Callback<CastResponse>() {
-            @Override
-            public void onResponse(Call<CastResponse> call, Response<CastResponse> response) {
-                CastResponse crewR=response.body();
-                List<Crew> crList=crewR.getCrew;
-                crewList.addAll(crList);
-                crewAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(Call<CastResponse> call, Throwable t) {
-
-            }
-        });
+//        Call<CastResponse>crewResponse=castInterface.getCredits(movieResults.getId());
+//        crewResponse.enqueue(new Callback<CastResponse>() {
+//            @Override
+//            public void onResponse(Call<CastResponse> call, Response<CastResponse> response) {
+//                CastResponse crewR=response.body();
+//                List<Crew> crList=crewR.getCrew;
+//                crewList.addAll(crList);
+//                crewAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<CastResponse> call, Throwable t) {
+//
+//            }
+//        });
 
 
 
